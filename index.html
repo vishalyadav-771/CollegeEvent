@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38000A">
+<title>Nexus Club – Campus Events</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FFF9F7;
+  --bg-soft:#FFF1ED;
+  --card:#FFFFFF;
+  --ink:#260006;
+  --ink-strong:#180003;
+  --mute:#6E3A3F;
+  --line:rgba(56,0,10,.14);
+  --line2:rgba(56,0,10,.24);
+  --brand:#9B1313;
+  --brand2:#CD1C18;
+  --acc:#FFA896;
+  --acc2:#FF8F79;
+  --acc-ink:#38000A;
+  --dark:#38000A;
+  --stub:#9B1313;
+  --stub-ink:#FFFFFF;
+  --shadow:0 18px 50px rgba(56,0,10,.13);
+  --glow:0 0 45px rgba(205,28,24,.12);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{
+  margin:0;min-height:100vh;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(255,168,150,.35),transparent 25rem),
+    radial-gradient(circle at 92% 10%,rgba(205,28,24,.12),transparent 28rem),
+    linear-gradient(135deg,#FFFDFC 0%,#FFF1ED 55%,#FFE7E1 100%);
+  color:var(--ink);
+  font:16px/1.6 Figtree,system-ui,sans-serif;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(56,0,10,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(56,0,10,.025) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom,black,transparent 78%);
+}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.08;margin:0;color:var(--ink-strong)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* Header */
+header{
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  position:sticky;top:0;z-index:20;
+}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font:800 1.3rem 'Bricolage Grotesque',sans-serif;
+  text-decoration:none;letter-spacing:-.02em;color:var(--dark);
+}
+.logo:before{
+  content:"N";display:grid;place-items:center;width:35px;height:35px;border-radius:11px;
+  background:linear-gradient(135deg,#CD1C18,#9B1313);
+  color:#fff;box-shadow:0 8px 22px rgba(155,19,19,.25);
+}
+nav{
+  display:flex;gap:6px;padding:5px;border:1px solid var(--line);
+  border-radius:14px;background:rgba(255,255,255,.82);
+}
+nav a{
+  padding:8px 15px;border-radius:10px;text-decoration:none;color:var(--mute);
+  font-weight:600;transition:.2s ease;
+}
+nav a.on,nav a:hover{
+  color:#fff;background:linear-gradient(135deg,#CD1C18,#9B1313);
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  border:1px solid transparent;border-radius:12px;padding:11px 18px;
+  font-weight:700;cursor:pointer;
+  background:linear-gradient(135deg,#CD1C18,#9B1313);
+  color:#fff;text-decoration:none;
+  box-shadow:0 8px 24px rgba(155,19,19,.2);
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(155,19,19,.28);filter:brightness(1.06)}
+.btn.acc{
+  background:linear-gradient(135deg,#FFA896,#FF8F79);
+  color:#38000A;
+  box-shadow:0 8px 24px rgba(255,168,150,.3);
+}
+.btn.ghost{
+  background:rgba(255,255,255,.8);
+  border:1px solid var(--line2);color:var(--dark);box-shadow:none;
+}
+.btn.sm{padding:7px 12px;font-size:.86rem;border-radius:9px}
+.btn.del{
+  background:rgba(180,35,90,.06);
+  border:1px solid rgba(180,35,90,.28);
+  color:#9B173E;box-shadow:none;
+}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Hero */
+.hero{
+  padding:78px 0 58px;display:grid;grid-template-columns:1.15fr .85fr;
+  gap:48px;align-items:center;position:relative;
+}
+.hero:before{
+  content:"";position:absolute;left:-180px;top:30px;width:430px;height:430px;
+  background:radial-gradient(circle,rgba(255,168,150,.23),transparent 68%);
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(2.7rem,6vw,5rem);font-weight:800;letter-spacing:-.055em;
+  margin-bottom:20px;max-width:760px;color:#38000A;
+}
+.hero h1:after{
+  content:"";display:block;width:120px;height:5px;margin-top:20px;border-radius:99px;
+  background:linear-gradient(90deg,#CD1C18,#FFA896);
+}
+.hero p{color:#6E3A3F;max-width:58ch;margin:0 0 26px;font-size:1.05rem}
+.stats{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.stats>div{
+  min-width:125px;padding:13px 16px;border:1px solid var(--line);
+  border-radius:14px;background:rgba(255,255,255,.78);
+  box-shadow:0 8px 25px rgba(56,0,10,.07);
+}
+.stats b{font:800 1.5rem 'Bricolage Grotesque',sans-serif;display:block;color:#9B1313}
+.stats span{color:#6E3A3F;font-size:.82rem}
+
+/* Featured */
+.feat{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,168,150,.34),transparent 14rem),
+    linear-gradient(145deg,#CD1C18,#9B1313 52%,#38000A);
+  border:1px solid rgba(56,0,10,.2);color:#fff;border-radius:26px;padding:30px;
+  box-shadow:var(--shadow),var(--glow);
+}
+.feat:before{
+  content:"";position:absolute;width:180px;height:180px;right:-65px;top:-65px;
+  border-radius:50%;background:rgba(255,168,150,.18);
+}
+.feat:after{
+  content:"";position:absolute;width:100px;height:100px;left:-45px;bottom:-50px;
+  border-radius:50%;background:rgba(255,168,150,.15);
+}
+.feat small{opacity:.88;position:relative;z-index:1;color:#FFE7E1}
+.feat h2{font-size:2rem;margin:10px 0 12px;position:relative;z-index:1;color:#fff}
+.feat p{opacity:.94;margin:0 0 18px;position:relative;z-index:1;color:#FFF4F1}
+.feat .btn{
+  background:#FFA896;color:#38000A;box-shadow:0 8px 22px rgba(0,0,0,.12);
+  position:relative;z-index:1;
+}
+
+/* Sections */
+section.blk{padding:30px 0 54px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:22px}
+.head h2{font-size:2rem;letter-spacing:-.025em;color:#38000A}
+.head a{color:#9B1313;text-decoration:none;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+
+/* Event cards */
+.card{
+  display:flex;background:rgba(255,255,255,.88);
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  box-shadow:0 12px 35px rgba(56,0,10,.09);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.card:hover{
+  transform:translateY(-5px);border-color:rgba(155,19,19,.34);
+  box-shadow:0 18px 45px rgba(56,0,10,.16);
+}
+.stub{
+  background:linear-gradient(180deg,#9B1313,#38000A);
+  color:#fff;min-width:82px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:14px 8px;
+  border-right:1px solid rgba(255,255,255,.14);position:relative;
+}
+.stub:after{
+  content:"";position:absolute;right:-1px;top:15%;height:70%;
+  border-right:2px dashed rgba(255,168,150,.4);
+}
+.stub b{font:800 2rem/1 'Bricolage Grotesque',sans-serif;color:#fff}
+.stub span{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#FFD5CC}
+.body{padding:18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.body h3{font-size:1.18rem;color:#38000A}
+.meta{color:#6E3A3F;font-size:.88rem}
+.body p{margin:4px 0 10px;font-size:.92rem;color:#674348}
+.tag{
+  align-self:flex-start;font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:99px;
+  border:1px solid rgba(155,19,19,.2);color:#9B1313;background:rgba(255,168,150,.2);
+  text-transform:uppercase;letter-spacing:.06em
+}
+.row{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+
+/* Filters and forms */
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.tools input,.tools select,.f input,.f select,.f textarea{
+  padding:11px 13px;border:1px solid var(--line2);border-radius:12px;
+  background:rgba(255,255,255,.9);width:100%;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.tools input:focus,.tools select:focus,.f input:focus,.f select:focus,.f textarea:focus{
+  border-color:rgba(155,19,19,.48);
+  box-shadow:0 0 0 4px rgba(205,28,24,.08)
+}
+.tools input{flex:1;min-width:200px;width:auto}.tools select{width:auto}
+.empty{
+  padding:48px;text-align:center;color:#6E3A3F;border:1px dashed var(--line2);
+  border-radius:18px;background:rgba(255,255,255,.6)
+}
+
+/* Dialog */
+dialog{
+  border:1px solid var(--line2);border-radius:22px;padding:0;width:min(480px,92vw);
+  background:#FFFDFC;color:var(--ink);box-shadow:0 30px 100px rgba(56,0,10,.3)
+}
+dialog::backdrop{background:rgba(56,0,10,.5);backdrop-filter:blur(5px)}
+.f{padding:26px;display:grid;gap:13px}
+.f h3{font-size:1.5rem;color:#38000A}
+.f label{font-size:.88rem;font-weight:700;display:grid;gap:6px;color:#4E292E}
+.f .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{color:#9B173E;font-size:.88rem;min-height:1.2em}
+.acts{display:flex;gap:10px;justify-content:flex-end}
+
+/* Admin */
+.tabs{display:flex;gap:5px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.tabs button{
+  background:none;border:0;padding:11px 15px;cursor:pointer;color:#6E3A3F;
+  font-weight:700;border-bottom:3px solid transparent
+}
+.tabs button.on{color:#9B1313;border-color:#CD1C18}
+.tw{
+  overflow-x:auto;background:rgba(255,255,255,.84);
+  border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)
+}
+table{border-collapse:collapse;width:100%;min-width:680px}
+th,td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);font-size:.9rem}
+th{color:#6E3A3F;font-weight:700;background:rgba(255,168,150,.13)}
+tr:last-child td{border:0}
+tr:hover td{background:rgba(255,168,150,.07)}
+td .btn{margin-right:6px}
+
+/* Toast/login/footer */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+  background:#38000A;color:#fff;padding:12px 20px;border-radius:12px;z-index:30;
+  font-weight:700;box-shadow:0 15px 40px rgba(56,0,10,.3)
+}
+.login{
+  max-width:400px;margin:80px auto;background:rgba(255,255,255,.9);
+  border:1px solid var(--line2);border-radius:22px;box-shadow:var(--shadow)
+}
+footer{
+  border-top:1px solid var(--line);padding:28px 0;color:#6E3A3F;font-size:.86rem;
+  background:rgba(255,255,255,.45)
+}
+@media(max-width:760px){
+  .wrap{padding:0 16px}.bar{height:68px}nav a{padding:8px 10px}
+  .hero{grid-template-columns:1fr;padding-top:48px;gap:30px}
+  .hero h1{font-size:clamp(2.35rem,12vw,3.5rem)}
+  .feat{border-radius:20px}.f .two{grid-template-columns:1fr}.grid{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .logo{font-size:1.1rem}.logo:before{width:30px;height:30px}
+  nav{gap:2px}nav a{font-size:.88rem;padding:7px 8px}
+  .stats>div{flex:1;min-width:105px}
+}
+</style></head><body>
+<header><div class="wrap bar"><a class="logo" href="#home">Nexus Club</a>
+<nav><a href="#home" data-n="home">Home</a><a href="#events" data-n="events">Events</a><a href="#admin" data-n="admin">Admin</a></nav></div></header>
+<main class="wrap" id="app"></main>
+<footer><div class="wrap">Nexus Club · Student activities council. Demo data is stored in this browser only.</div></footer>
+<dialog id="dlg"></dialog><div id="toast" class="toast" hidden></div>
+<script>
+const $=s=>document.querySelector(s),ADMIN_PASS='admin123';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const seed=[
+{id:'e1',name:'Hack the Campus 24h',category:'Tech',date:'2026-10-10T10:00',venue:'Innovation Lab, Block C',description:'A 24-hour hackathon to build tools that make campus life easier. Teams of 2–4, mentors on site.',featured:true},
+{id:'e2',name:'Open Mic Night',category:'Cultural',date:'2026-10-03T18:30',venue:'Central Amphitheatre',description:'Music, poetry and stand-up. Sign up to perform or just come to cheer.'},
+{id:'e3',name:'Intro to Git & GitHub',category:'Workshop',date:'2026-10-07T15:00',venue:'Seminar Hall 2',description:'Hands-on session covering commits, branches and pull requests. Bring your laptop.'},
+{id:'e4',name:'Inter-College Quiz League',category:'Competition',date:'2026-10-18T11:00',venue:'Main Auditorium',description:'Quiz rounds across science, current affairs and pop culture. Prizes for top three teams.'},
+{id:'e5',name:'Alumni Career Talk',category:'Seminar',date:'2026-10-24T14:00',venue:'Conference Room, Admin Block',description:'Four alumni share how they broke into product, data and design roles.'},
+{id:'e6',name:'Photography Walk',category:'Cultural',date:'2026-09-20T07:00',venue:'Campus Gardens',description:'A sunrise photo walk. Past event, photos coming soon.'}];
+let events=store.get('nx_events',null)||seed,regs=store.get('nx_regs',[]),admin=false,tab='events',rq='',rf='',q='',cat='';
+const save=()=>{store.set('nx_events',events);store.set('nx_regs',regs)};save();
+const cats=()=>[...new Set(events.map(e=>e.category))].sort();
+const fmt=(d,o)=>new Date(d).toLocaleString('en-IN',o);
+const when=d=>fmt(d,{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+const past=e=>new Date(e.date)<new Date();
+const upcoming=()=>events.filter(e=>!past(e)).sort((a,b)=>a.date.localeCompare(b.date));
+const count=id=>regs.filter(r=>r.eventId===id).length;
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2600)}
+function card(e){const p=past(e);return `<article class="card"><div class="stub"><b>${fmt(e.date,{day:'numeric'})}</b><span>${fmt(e.date,{month:'short'})}</span></div>
+<div class="body"><span class="tag">${esc(e.category)}</span><h3>${esc(e.name)}</h3>
+<div class="meta">${when(e.date)}<br>${esc(e.venue)}</div><p>${esc(e.description)}</p>
+<div class="row"><span class="meta">${count(e.id)} registered</span>
+<button class="btn acc sm" data-reg="${e.id}" ${p?'disabled':''}>${p?'Event ended':'Register'}</button></div></div></article>`}
+function home(){const u=upcoming(),f=u.find(e=>e.featured)||u[0];
+return `<section class="hero"><div><h1>Build, perform and meet people beyond your classroom.</h1>
+<p>Nexus Club runs workshops, competitions and cultural nights open to every department and year. Pick an event, register in a minute, and turn up.</p>
+<a class="btn acc" href="#events">Browse all events</a>
+<div class="stats"><div><b>${events.length}</b><span>events listed</span></div><div><b>${regs.length}</b><span>registrations</span></div><div><b>${cats().length}</b><span>categories</span></div></div></div>
+${f?`<div class="feat"><small>Featured event · ${when(f.date)}</small><h2>${esc(f.name)}</h2><p>${esc(f.description)}</p><p><small>${esc(f.venue)}</small></p><button class="btn" data-reg="${f.id}">Register now</button></div>`:'<div class="empty">No upcoming events yet.</div>'}</section>
+<section class="blk"><div class="head"><h2>Upcoming events</h2><a href="#events">See all</a></div>
+<div class="grid">${u.slice(0,3).map(card).join('')||'<div class="empty">Nothing scheduled. Check back soon.</div>'}</div></section>`}
+function evPage(){return `<section class="blk"><div class="head"><h2>All events</h2></div>
+<div class="tools"><input id="q" type="search" placeholder="Search events by name" aria-label="Search events" value="${esc(q)}">
+<select id="cat" aria-label="Filter by category"><option value="">All categories</option>${cats().map(c=>`<option ${c===cat?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+<div class="grid" id="list"></div></section>`}
+function fillList(){const l=events.filter(e=>e.name.toLowerCase().includes(q.toLowerCase())&&(!cat||e.category===cat)).sort((a,b)=>a.date.localeCompare(b.date));
+$('#list').innerHTML=l.map(card).join('')||'<div class="empty" style="grid-column:1/-1">No events match. Try a different name or category.</div>'}
+function adminPage(){if(!admin)return `<form class="login f" id="login"><h3>Admin sign in</h3><label>Passcode<input type="password" id="pw" autocomplete="off" required></label><div class="err" id="lerr"></div><button class="btn">Sign in</button><small class="meta">Demo passcode: admin123</small></form>`;
+return `<section class="blk"><div class="head"><h2>Admin dashboard</h2><button class="btn ghost sm" id="out">Sign out</button></div>
+<div class="tabs"><button data-t="events" class="${tab==='events'?'on':''}">Events (${events.length})</button><button data-t="regs" class="${tab==='regs'?'on':''}">Registrations (${regs.length})</button></div><div id="pane"></div></section>`}
+function pane(){const p=$('#pane');if(!p)return;
+if(tab==='events'){p.innerHTML=`<div class="tools"><button class="btn acc" id="add">Add event</button></div><div class="tw"><table><thead><tr><th>Event</th><th>Category</th><th>Date</th><th>Venue</th><th>Reg.</th><th></th></tr></thead><tbody>${events.map(e=>`<tr><td>${esc(e.name)}${e.featured?' ★':''}</td><td>${esc(e.category)}</td><td>${when(e.date)}</td><td>${esc(e.venue)}</td><td>${count(e.id)}</td><td><button class="btn ghost sm" data-edit="${e.id}">Edit</button><button class="btn del sm" data-del="${e.id}">Delete</button></td></tr>`).join('')||'<tr><td colspan="6">No events. Add your first one.</td></tr>'}</tbody></table></div>`}
+else{p.innerHTML=`<div class="tools"><input id="rq" type="search" placeholder="Search name, email or college" aria-label="Search registrations" value="${esc(rq)}"><select id="rf" aria-label="Filter by event"><option value="">All events</option>${events.map(e=>`<option value="${e.id}" ${e.id===rf?'selected':''}>${esc(e.name)}</option>`).join('')}</select></div><div class="tw"><table><thead><tr><th>Name</th><th>Email</th><th>College / Year</th><th>Phone</th><th>Event</th><th></th></tr></thead><tbody id="rb"></tbody></table></div>`;regRows()}}
+function regRows(){const s=rq.toLowerCase(),n=id=>(events.find(e=>e.id===id)||{name:'(deleted event)'}).name;
+const l=regs.filter(r=>(!rf||r.eventId===rf)&&(!s||[r.name,r.email,r.college].join(' ').toLowerCase().includes(s)));
+$('#rb').innerHTML=l.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.email)}</td><td>${esc(r.college)}, ${esc(r.year)}</td><td>${esc(r.phone)}</td><td>${esc(n(r.eventId))}</td><td><button class="btn del sm" data-rdel="${r.id}">Remove</button></td></tr>`).join('')||'<tr><td colspan="6">No registrations match.</td></tr>'}
+function render(){const h=(location.hash||'#home').slice(1);document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.n===h));
+$('#app').innerHTML=h==='events'?evPage():h==='admin'?adminPage():home();if(h==='events')fillList();if(h==='admin')pane();scrollTo(0,0)}
+function open(html){const d=$('#dlg');d.innerHTML=html;d.showModal()}
+function regForm(id){const e=events.find(x=>x.id===id);if(!e)return;
+open(`<form class="f" id="rf2" novalidate><h3>Register for ${esc(e.name)}</h3><div class="meta">${when(e.date)} · ${esc(e.venue)}</div>
+<label>Full name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label>
+<div class="two"><label>College<input name="college" required></label><label>Year<select name="year" required><option value="">Select</option><option>1st year</option><option>2nd year</option><option>3rd year</option><option>4th year</option><option>Postgraduate</option></select></label></div>
+<label>Phone number<input name="phone" type="tel" required autocomplete="tel"></label><div class="err" id="err"></div>
+<div class="acts"><button type="button" class="btn ghost" data-close>Cancel</button><button class="btn acc">Submit registration</button></div></form>`);
+$('#rf2').onsubmit=ev=>{ev.preventDefault();const d=Object.fromEntries(new FormData(ev.target)),er=$('#err');
+if(Object.values(d).some(v=>!v.trim()))return er.textContent='Fill in every field to register.';
+if(!/^\S+@\S+\.\S+$/.test(d.email))return er.textContent='Enter a valid email address, like name@college.edu.';
+if(!/^\+?[0-9\s-]{10,14}$/.test(d.phone))return er.textContent='Enter a 10-digit phone number.';
+if(regs.some(r=>r.eventId===id&&r.email.toLowerCase()===d.email.toLowerCase()))return er.textContent='This email is already registered for this event.';
+regs.push({id:'r'+Date.now(),eventId:id,...d,at:new Date().toISOString()});save();$('#dlg').close();toast('Registered for '+e.name);render()}}
+function evForm(id){const e=events.find(x=>x.id===id)||{name:'',category:'',date:'',venue:'',description:'',featured:false};
+open(`<form class="f" id="ef"><h3>${id?'Edit event':'Add event'}</h3><label>Event name<input name="name" required value="${esc(e.name)}"></label>
+<div class="two"><label>Category<input name="category" required list="cl" value="${esc(e.category)}"><datalist id="cl">${cats().map(c=>`<option>${esc(c)}`).join('')}</datalist></label><label>Date & time<input name="date" type="datetime-local" required value="${esc(e.date)}"></label></div>
+<label>Venue<input name="venue" required value="${esc(e.venue)}"></label><label>Description<textarea name="description" rows="3" required>${esc(e.description)}</textarea></label>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="featured" style="width:auto" ${e.featured?'checked':''}> Feature on home page</label>
+<div class="acts"><button type="button" class="btn ghost" data-close>Cancel</button><button class="btn acc">${id?'Save changes':'Add event'}</button></div></form>`);
+$('#ef').onsubmit=ev=>{ev.preventDefault();const fd=new FormData(ev.target),o={name:fd.get('name').trim(),category:fd.get('category').trim(),date:fd.get('date'),venue:fd.get('venue').trim(),description:fd.get('description').trim(),featured:fd.has('featured')};
+if(o.featured)events.forEach(x=>x.featured=false);
+if(id)Object.assign(events.find(x=>x.id===id),o);else events.push({id:'e'+Date.now(),...o});
+save();$('#dlg').close();toast(id?'Event saved':'Event added');render()}}
+document.addEventListener('click',ev=>{const t=ev.target.closest('button');if(!t)return;const d=t.dataset;
+if(d.reg)regForm(d.reg);else if('close' in d)$('#dlg').close();
+else if(d.edit)evForm(d.edit);else if(t.id==='add')evForm();
+else if(d.del){const e=events.find(x=>x.id===d.del);if(confirm(`Delete "${e.name}" and its ${count(e.id)} registrations?`)){events=events.filter(x=>x.id!==d.del);regs=regs.filter(r=>r.eventId!==d.del);save();toast('Event deleted');render()}}
+else if(d.rdel){regs=regs.filter(r=>r.id!==d.rdel);save();toast('Registration removed');render()}
+else if(d.t){tab=d.t;render()}else if(t.id==='out'){admin=false;render()}});
+document.addEventListener('input',ev=>{const i=ev.target;if(i.id==='q'){q=i.value;fillList()}else if(i.id==='cat'){cat=i.value;fillList()}else if(i.id==='rq'){rq=i.value;regRows()}else if(i.id==='rf'){rf=i.value;regRows()}});
+document.addEventListener('submit',ev=>{if(ev.target.id==='login'){ev.preventDefault();if($('#pw').value===ADMIN_PASS){admin=true;render()}else $('#lerr').textContent='Incorrect passcode. Try again.'}});
+$('#dlg').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close()});
+addEventListener('hashchange',render);render();
+</script></body></html>
